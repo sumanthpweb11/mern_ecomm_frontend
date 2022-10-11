@@ -12,7 +12,11 @@ const ProductForListComponent = () => {
     >
       <Row>
         <Col lg={5}>
-          <Card.Img variant="top" src="/images/carousel/2.jpg" />
+          <Card.Img
+            crossOrigin="anonymous"
+            variant="top"
+            src="/images/carousel/2.jpg"
+          />
         </Col>
         <Col lg={7}>
           <Card.Body>
