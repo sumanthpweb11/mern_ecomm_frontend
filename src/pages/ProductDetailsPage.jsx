@@ -14,12 +14,23 @@ import AddedToCartMessageComponent from "../components/AddedToCartMessageCompone
 import ImageZoom from "js-image-zoom";
 import { useEffect } from "react";
 
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../redux/actions/cartActions";
+
 const ProductDetailsPage = () => {
+  const dispatch = useDispatch();
+
+  const addToCartHandler = () => {
+    dispatch(addToCart());
+  };
+
+  const products = useSelector((state) => state.cart.value);
+
   var options = {
     // width: 400,
-    // zoomWidth: 400,
+    // zoomWidth: 500,
     // fillContainer: true,
-    // zoomPosition:"bottom",
+    // zoomPosition: "bottom",
     scale: 2,
     offset: { vertical: 0, horizontal: 0 },
   };
@@ -35,22 +46,23 @@ const ProductDetailsPage = () => {
       <Row className="mt-5">
         <Col style={{ zIndex: 1 }} md={4}>
           <div id="first">
-            <Image crossOrigin="anonymous" fluid src="/images/carousel/1.jpg" />
+            <Image
+              crossOrigin="anonymous"
+              fluid
+              src="/images/games-category.png"
+            />
           </div>
           <br />
-
           <div id="second">
-            <Image crossOrigin="anonymous" fluid src="/images/carousel/2.jpg" />
+            <Image fluid src="/images/monitors-category.png" />
           </div>
           <br />
-
           <div id="third">
-            <Image crossOrigin="anonymous" fluid src="/images/carousel/3.jpg" />
+            <Image fluid src="/images/tablets-category.png" />
           </div>
           <br />
-
           <div id="fourth">
-            <Image crossOrigin="anonymous" fluid src="/images/carousel/1.jpg" />
+            <Image fluid src="/images/games-category.png" />
           </div>
           <br />
         </Col>
@@ -59,27 +71,25 @@ const ProductDetailsPage = () => {
             <Col md={8}>
               <ListGroup variant="flush">
                 <ListGroup.Item>
-                  <h1>Product Name</h1>
+                  <h1>Product name {products}</h1>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Rating readonly size={20} initialValue={4} /> (1)
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  Price <span className="fw-bold">Rs 2000</span>
+                  Price <span className="fw-bold">$345</span>
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Id
-                  sint eos nesciunt beatae, aliquid alias non obcaecati quaerat
-                  similique iure!
+                  Porta ac consectetur ac Lorem ipsum dolor, sit amet
+                  consectetur adipisicing elit. Perferendis, illo.
                 </ListGroup.Item>
               </ListGroup>
             </Col>
             <Col md={4}>
               <ListGroup>
-                <ListGroup.Item>Status: In Stock</ListGroup.Item>
+                <ListGroup.Item>Status: in stock</ListGroup.Item>
                 <ListGroup.Item>
-                  {" "}
-                  Price <span className="fw-bold">Rs 2000</span>{" "}
+                  Price: <span className="fw-bold">$345</span>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   Quantity:
@@ -91,7 +101,9 @@ const ProductDetailsPage = () => {
                   </Form.Select>
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  <Button variant="danger">Cart</Button>
+                  <Button onClick={addToCartHandler} variant="danger">
+                    Add to cart
+                  </Button>
                 </ListGroup.Item>
               </ListGroup>
             </Col>
